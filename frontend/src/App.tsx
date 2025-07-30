@@ -1,7 +1,8 @@
 import { AppProvider, useAppContext } from './context/AppContext';
 import Layout from './components/Layout';
+import YamlEditor from './components/YamlEditor';
 
-const DtaAnalysisContent = () => <div>DTA Analysis Content</div>;
+const DtaAnalysisContent = () => <YamlEditor />;
 const DataTransformationContent = () => <div>Data Transformation Content</div>;
 
 function AppContent() {

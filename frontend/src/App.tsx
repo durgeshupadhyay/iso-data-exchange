@@ -1,11 +1,25 @@
-function App() {
+import { AppProvider, useAppContext } from './context/AppContext';
+import Layout from './components/Layout';
+
+const DtaAnalysisContent = () => <div>DTA Analysis Content</div>;
+const DataTransformationContent = () => <div>Data Transformation Content</div>;
+
+function AppContent() {
+  const { activeTab } = useAppContext();
+
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold text-blue-600">
-        DTA-to-CTMS Transformation Tool
-      </h1>
-    </div>
-  )
+    <Layout>
+      {activeTab === 'DTA Analysis' ? <DtaAnalysisContent /> : <DataTransformationContent />}
+    </Layout>
+  );
 }
 
-export default App
+function App() {
+  return (
+    <AppProvider>
+      <AppContent />
+    </AppProvider>
+  );
+}
+
+export default App;

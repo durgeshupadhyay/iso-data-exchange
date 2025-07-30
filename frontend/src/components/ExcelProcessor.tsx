@@ -1,15 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import * as XLSX from 'xlsx';
-import { ProcessingState } from '../types/processing';
+import { useAppContext } from '../context/AppContext';
 import FlowDiagram from './FlowDiagram';
 
 const ExcelProcessor: React.FC = () => {
-  const [processingState, setProcessingState] = useState<ProcessingState>({
-    step: 'idle',
-    progress: 0,
-    statusText: 'Waiting for file...',
-  });
+  const { processingState, setProcessingState } = useAppContext();
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];

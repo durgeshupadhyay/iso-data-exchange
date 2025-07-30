@@ -2,9 +2,16 @@ import { AppProvider, useAppContext } from './context/AppContext';
 import Layout from './components/Layout';
 import YamlEditor from './components/YamlEditor';
 import ExcelProcessor from './components/ExcelProcessor';
+import ResultsDashboard from './components/ResultsDashboard';
 
 const DtaAnalysisContent = () => <YamlEditor />;
-const DataTransformationContent = () => <ExcelProcessor />;
+const DataTransformationContent = () => {
+  const { processingState } = useAppContext();
+  if (processingState.step === 'completed') {
+    return <ResultsDashboard />;
+  }
+  return <ExcelProcessor />;
+};
 
 function AppContent() {
   const { activeTab } = useAppContext();

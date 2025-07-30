@@ -1,9 +1,10 @@
 import { AppProvider, useAppContext } from './context/AppContext';
 import Layout from './components/Layout';
 import YamlEditor from './components/YamlEditor';
+import ExcelProcessor from './components/ExcelProcessor';
 
 const DtaAnalysisContent = () => <YamlEditor />;
-const DataTransformationContent = () => <div>Data Transformation Content</div>;
+const DataTransformationContent = () => <ExcelProcessor />;
 
 function AppContent() {
   const { activeTab } = useAppContext();

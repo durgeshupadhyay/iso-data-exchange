@@ -1,6 +1,7 @@
 from .dta import (
     DTAConfiguration,
     DTAConfigurationCreate,
+    DTAConfigurationUpdate,
     DataUpload,
     DataUploadCreate,
     TransformationJob,
@@ -9,4 +10,11 @@ from .dta import (
     QualityCheckCreate,
     CTMSRecord,
     CTMSRecordCreate,
+)
+from .ai import (
+    AIRecommendations,
+    FieldMappingRecommendation,
+    DataQualityRecommendation,
+    FuzzyMatchingRecommendation,
+    Recommendation,
 )

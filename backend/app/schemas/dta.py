@@ -11,6 +11,9 @@ class DTAConfigurationBase(BaseModel):
 class DTAConfigurationCreate(DTAConfigurationBase):
     pass
 
+class DTAConfigurationUpdate(DTAConfigurationBase):
+    pass
+
 class DTAConfiguration(DTAConfigurationBase):
     id: int
     created_at: datetime

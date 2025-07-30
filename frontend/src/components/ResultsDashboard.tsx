@@ -1,8 +1,10 @@
 import React from 'react';
 import MetricCard from './MetricCard';
 import IssuesTable from './IssuesTable';
+import DataTable from './DataTable';
 import { QualityMetrics, QualityIssue, TransformedData } from '../types/quality';
 import { FiCheckCircle, FiAlertTriangle, FiXCircle, FiTrendingUp } from 'react-icons/fi';
+import { createColumnHelper } from '@tanstack/react-table';
 
 const mockMetrics: QualityMetrics = {
   recordsProcessed: 1500,
@@ -23,6 +25,15 @@ const mockData: TransformedData[] = [
   { cdm_site_name: 'General Hospital', cdm_principal_investigator: 'Dr. Jon Smith', cdm_patient_id: 'P002', cdm_visit_date: '2023-01-11' },
 ];
 
+const columnHelper = createColumnHelper<TransformedData>();
+
+const columns = [
+  columnHelper.accessor('cdm_site_name', { header: 'Site Name' }),
+  columnHelper.accessor('cdm_principal_investigator', { header: 'Principal Investigator' }),
+  columnHelper.accessor('cdm_patient_id', { header: 'Patient ID' }),
+  columnHelper.accessor('cdm_visit_date', { header: 'Visit Date' }),
+];
+
 const ResultsDashboard: React.FC = () => {
   return (
     <div>
@@ -36,30 +47,7 @@ const ResultsDashboard: React.FC = () => {
       <IssuesTable issues={mockIssues} />
       <div className="mt-8">
         <h3 className="text-xl font-bold mb-2">Transformed Data Preview</h3>
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white">
-            <thead>
-              <tr>
-                {Object.keys(mockData[0]).map((header) => (
-                  <th key={header} className="py-2 px-4 border-b">
-                    {header}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {mockData.map((row, i) => (
-                <tr key={i}>
-                  {Object.values(row).map((cell, j) => (
-                    <td key={j} className="py-2 px-4 border-b">
-                      {cell}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <DataTable columns={columns} data={mockData} filename="transformed_data" />
       </div>
     </div>
   );

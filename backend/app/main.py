@@ -49,10 +49,11 @@ if settings.CORS_ORIGINS:
 def read_root():
     return {"message": "Welcome to the DTA-to-CTMS API"}
 
-from app.api.endpoints import transformation, dta, ai, data, fuzzy
+from app.api.endpoints import transformation, dta, ai, data, fuzzy, validation
 
 app.include_router(transformation.router, prefix="/api/v1/transform", tags=["transformation"])
 app.include_router(dta.router, prefix="/api/dta", tags=["dta"])
 app.include_router(ai.router, prefix="/api/ai", tags=["ai"])
 app.include_router(data.router, prefix="/api/data", tags=["data"])
 app.include_router(fuzzy.router, prefix="/api/fuzzy", tags=["fuzzy"])
+app.include_router(validation.router, prefix="/api/validation", tags=["validation"])
